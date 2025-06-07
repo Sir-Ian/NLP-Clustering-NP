@@ -2,7 +2,7 @@ absl-py==2.0.0
 annotated-types==0.6.0
 anyio==3.7.1
 astunparse==1.6.3
-boltons @ file:///home/conda/feedstock_root/build_artifacts/boltons_1677499911949/work
+boltons
 Brotli @ file:///Users/runner/miniforge3/conda-bld/brotli-split_1693583518054/work
 cached-property @ file:///home/conda/feedstock_root/build_artifacts/cached_property_1615209429212/work
 cachetools==5.3.2
