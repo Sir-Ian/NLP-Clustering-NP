@@ -80,8 +80,8 @@ sympy>=1.12
 tensorboard>=2.14
 tensorboard-data-server>=0.7
 # Apple-silicon Macs get the special wheel; everyone else gets vanilla TF
-tensorflow-macos==2.14.0; sys_platform=="darwin" and platform_machine=="arm64"
-tensorflow==2.14.0; not (sys_platform=="darwin" and platform_machine=="arm64")
+tensorflow-macos==2.14.0 ; sys_platform == "darwin" and platform_machine == "arm64"
+tensorflow==2.14.0       ; platform_machine != "arm64"
 tensorflow-estimator>=2.14
 tensorflow-io-gcs-filesystem>=0.34
 termcolor>=2.3
