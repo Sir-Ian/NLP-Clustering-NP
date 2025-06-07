@@ -2,6 +2,8 @@ import pandas as pd
 import re
 from openpyxl import load_workbook
 import os
+from utils import setup_logging
+import logging
 
 # Define the directory path
 dir_path = "/Users/peretzcik/Library/Mobile Documents/com~apple~CloudDocs/Downloads/LiveChatData"
@@ -33,6 +35,8 @@ patterns = [
     ("Product Category", r"Product Category: ([^\n]*)"),
     ("Specific Product", r"Specific Product: ([^\n]*)"),
 ]
+
+setup_logging('parse_gpt_response.log')
 
 def parse_entry(entry):
     # Initialize a dict to hold the parsed data
@@ -71,23 +75,26 @@ def parse_entry(entry):
     return pd.DataFrame(data)
 
 
-# Add a header for the chat_id on Sheet2
-output_ws.cell(row=1, column=1, value="chat_id")
+try:
+    # Add a header for the chat_id on Sheet2
+    output_ws.cell(row=1, column=1, value="chat_id")
 
-# Process each entry in column B (2nd column, 1-indexed)
-for row in range(2, data_ws.max_row + 1):
-    chat_id = data_ws.cell(row=row, column=1).value  # Read the chat_id from column A
-    entry = data_ws.cell(row=row, column=2).value  # Read the entry from column B
-    result = parse_entry(entry)
+    # Process each entry in column B (2nd column, 1-indexed)
+    for row in range(2, data_ws.max_row + 1):
+        chat_id = data_ws.cell(row=row, column=1).value  # Read the chat_id from column A
+        entry = data_ws.cell(row=row, column=2).value  # Read the entry from column B
+        result = parse_entry(entry)
 
-    # Write the result back to 'Sheet2'
-    for i, record in result.iterrows():
-        output_row = output_ws.max_row + 1
-        output_ws.cell(row=output_row, column=1, value=chat_id)  # Write the chat_id to column A
-        for j, (column_name, value) in enumerate(record.items(), start=1):
-            output_ws.cell(row=output_row, column=j + 1, value=value)  # Adjust column indexing to start from column B
-
-# Save the workbook
-book.save(file_name)
-
-print("Task completed successfully!")
+        # Write the result back to 'Sheet2'
+        for i, record in result.iterrows():
+            output_row = output_ws.max_row + 1
+            output_ws.cell(row=output_row, column=1, value=chat_id)  # Write the chat_id to column A
+            for j, (column_name, value) in enumerate(record.items(), start=1):
+                output_ws.cell(row=output_row, column=j + 1, value=value)  # Adjust column indexing to start from column B
+    # Save the workbook
+    book.save(file_name)
+    print("Task completed successfully!")
+    logging.info("Task completed successfully!")
+except Exception as e:
+    logging.error(f"Error occurred: {e}")
+    print(f"Error occurred: {e}")

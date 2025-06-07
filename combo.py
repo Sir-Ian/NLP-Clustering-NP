@@ -5,24 +5,12 @@ import logging
 from hdbscan import HDBSCAN
 from sklearn.metrics.pairwise import cosine_similarity
 import json
+from utils import setup_logging, load_data, save_data
 
 # Setup logging
-logging.basicConfig(filename='/Users/ian/Desktop/ChatData/Logs/processing.log',
-                    level=logging.INFO,
-                    format='%(asctime)s %(levelname)s: %(message)s',
-                    filemode='a')  # 'w' to overwrite the log file on each run
+setup_logging('/Users/ian/Desktop/ChatData/Logs/processing.log')
 
 logging.info("Script started")
-
-def load_data(file_path):
-    logging.info(f"Attempting to load data from {file_path}")
-    try:
-        df = pd.read_csv(file_path)
-        logging.info(f"Data loaded successfully from {file_path}")
-        return df
-    except Exception as e:
-        logging.error(f"Error loading data from {file_path}: {e}")
-        raise e  # Re-raise the exception after logging
 
 def generate_openai_embeddings(df, openai_api_key):
     logging.info("Starting to generate embeddings")
@@ -72,15 +60,6 @@ def perform_clustering(df):
 
     except Exception as e:
         logging.error(f"Error in clustering: {e}")
-        raise e
-
-def save_data(df, file_path):
-    logging.info(f"Attempting to save data to {file_path}")
-    try:
-        df.to_csv(file_path, index=False)
-        logging.info(f"File saved successfully at {file_path}")
-    except Exception as e:
-        logging.error(f"Error saving file at {file_path}: {e}")
         raise e
 
 if __name__ == "__main__":

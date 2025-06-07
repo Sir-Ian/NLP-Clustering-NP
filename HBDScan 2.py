@@ -1,3 +1,4 @@
+from utils import setup_logging, load_data, save_data
 import pandas as pd
 import numpy as np
 from hdbscan import HDBSCAN
@@ -5,14 +6,15 @@ from sklearn.metrics.pairwise import cosine_distances
 import logging
 
 # Set up logging
-logging.basicConfig(filename='/Users/ian/Desktop/ChatData/Logs/processing.log', level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
-
+setup_logging('/Users/ian/Desktop/ChatData/Logs/processing.log')
 logging.info('Starting script')
 
 try:
     # Load the data with embeddings
     file_path = '/Users/ian/Desktop/ChatData/Input/processed_data_with_embeddings.csv'
-    df = pd.read_csv(file_path)
+    df = load_data(file_path)
+    if df is None:
+        raise Exception('Data could not be loaded')
     logging.info('Data loaded successfully')
 
     # Convert embeddings from string to list of floats
@@ -46,7 +48,7 @@ try:
 
     # Save the final DataFrame with original data and new cluster labels
     output_path = '/Users/ian/Desktop/ChatData/Output/clustered_data_with_clusters.csv'
-    final_df.to_csv(output_path, index=False)
+    save_data(final_df, output_path)
     logging.info('File has been processed and saved successfully')
 
 except Exception as e:

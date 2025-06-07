@@ -1,4 +1,5 @@
-import pandas as pd
+from utils import setup_logging, load_data, save_data
+import logging
 import nltk
 import spacy
 from nltk.corpus import stopwords
@@ -11,9 +12,12 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-# Load the dataset
+setup_logging('preprocess_data.log')
 file_path = '/Users/ian/Downloads/PreprocessData.csv'  # Replace with your file path
-data = pd.read_csv(file_path)
+data = load_data(file_path)
+if data is None:
+    logging.error(f"Could not load file: {file_path}")
+    exit(1)
 
 # Remove irrelevant or empty columns
 columns_to_drop = [col for col in data.columns if 'Unnamed' in col]
@@ -45,6 +49,5 @@ for col in text_columns:
 
 # Save the preprocessed data to a new CSV file
 output_file_path = '/Users/ian/Downloads/postprocessed_data.csv'  # You can change this file name and path as needed
-data.to_csv(output_file_path, index=False)
-
-# The preprocessed data is now saved in 'preprocessed_data.csv'
+save_data(data, output_file_path)
+logging.info(f"Preprocessed data saved to {output_file_path}")

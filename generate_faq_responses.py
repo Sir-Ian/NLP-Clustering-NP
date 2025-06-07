@@ -2,8 +2,11 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import numpy as np
+from utils import setup_logging, load_data, save_data
+import logging
 
 def main():
+    setup_logging('faq_processing.log')
     # Pre-trained model
     model_name = 'all-mpnet-base-v2' # Model provided by Hugging Face's transformers library
 
@@ -15,8 +18,11 @@ def main():
     model = SentenceTransformer(model_name)
 
     # Read the CSV files
-    preprocessed_data_df = pd.read_csv(preprocessed_data_path)
-    remaining_faq_df = pd.read_csv(remaining_faq_path)
+    preprocessed_data_df = load_data(preprocessed_data_path)
+    remaining_faq_df = load_data(remaining_faq_path)
+    if preprocessed_data_df is None or remaining_faq_df is None:
+        logging.error('Could not load input data.')
+        return
 
     # Generate embeddings for the concerns and questions
     # Note: Ensure you have sufficient RAM, as this may require a lot of memory
@@ -42,8 +48,9 @@ def main():
 
     # Save the results to a CSV
     output_path = '/Users/ian/Library/CloudStorage/OneDrive-JeffreyCik/Code/updated_remaining_structured_faq_items.csv'
-    remaining_faq_df.to_csv(output_path, index=False)
+    save_data(remaining_faq_df, output_path)
     print(f"FAQ processing complete! Updated file saved as '{output_path}'.")
+    logging.info(f"FAQ processing complete! Updated file saved as '{output_path}'.")
 
 if __name__ == "__main__":
     main()

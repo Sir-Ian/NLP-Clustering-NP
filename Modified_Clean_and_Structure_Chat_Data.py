@@ -1,12 +1,8 @@
-
 # Import Required Libraries
 import pandas as pd
 import re
-
-# Function to Read Data
-def read_data(file_path):
-    df = pd.read_csv(file_path)
-    return df
+from utils import setup_logging, load_data, save_data
+import logging
 
 # Function to Clean Transcript: Remove emails, names, and timestamps
 def clean_transcript(transcript):
@@ -38,29 +34,27 @@ def extract_and_classify_lines(transcript):
 
 # Main Function
 if __name__ == "__main__":
+    setup_logging('structure_chat_data.log')
     file_path = "/Users/iandeuberry/Downloads/RawDataClean.csv"  # Replace with the path to your chat log CSV file
-    df = read_data(file_path)
-    
+    df = load_data(file_path)
+    if df is None:
+        logging.error("The column 'chat_id' does not exist. Please check the CSV file.")
+        exit(1)
     structured_data_list = []
-    
     # Check if 'chat_id' exists in DataFrame columns
     if 'chat_id' in df.columns:
         conversation_id_column = 'chat_id'
     else:
         print("The column 'chat_id' does not exist. Please check the CSV file.")
+        logging.error("The column 'chat_id' does not exist. Please check the CSV file.")
         exit(1)
-        
     for index, row in df.iterrows():
         transcript = row['transcript']
-        
         cleaned_transcript = clean_transcript(transcript)
-        
         structured_lines = extract_and_classify_lines(cleaned_transcript)
-        
         for line_data in structured_lines:
             line_data['Conversation_ID'] = row[conversation_id_column]
             structured_data_list.append(line_data)
-    
     structured_data_df = pd.DataFrame(structured_data_list)
-    
-    structured_data_df.to_csv("Structured_Chat_Data.csv", index=False)  # This will save the structured data to a new CSV file
+    save_data(structured_data_df, "Structured_Chat_Data.csv")  # This will save the structured data to a new CSV file
+    logging.info("Structured chat data saved to Structured_Chat_Data.csv")

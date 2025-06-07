@@ -1,10 +1,16 @@
+from utils import setup_logging, load_data
+import logging
 import pandas as pd
 
 def estimate_tokens(file_path, column_name='Processed_Concern', sample_size=100, avg_token_length=4):
     """
     Estimate the number of tokens for a subset of the dataset based on average token length.
     """
-    df = pd.read_csv(file_path)
+    setup_logging('token_est.log')
+    df = load_data(file_path)
+    if df is None:
+        logging.error(f"Could not load file: {file_path}")
+        return 0
 
     # Select a random sample of the data
     df_sample = df.sample(n=sample_size)
@@ -16,6 +22,7 @@ def estimate_tokens(file_path, column_name='Processed_Concern', sample_size=100,
         total_tokens += token_count
 
     print(f"Estimated total tokens for {sample_size} samples: {total_tokens:.0f}")
+    logging.info(f"Estimated total tokens for {sample_size} samples: {total_tokens:.0f}")
     return total_tokens
 
 # Usage
