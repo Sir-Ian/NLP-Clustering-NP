@@ -1,104 +1,100 @@
-absl-py==2.0.0
-annotated-types==0.6.0
-anyio==3.7.1
-astunparse==1.6.3
-boltons
-Brotli @ file:///Users/runner/miniforge3/conda-bld/brotli-split_1693583518054/work
-cached-property @ file:///home/conda/feedstock_root/build_artifacts/cached_property_1615209429212/work
-cachetools==5.3.2
-certifi==2023.7.22
-cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1671179893800/work
-charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1688813409104/work
-click==8.1.7
-colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1666700638685/work
-conda==23.3.1
-conda-libmamba-solver @ file:///home/conda/feedstock_root/build_artifacts/conda-libmamba-solver_1680508672016/work/src
-conda-package-handling @ file:///home/conda/feedstock_root/build_artifacts/conda-package-handling_1691048088238/work
-conda_package_streaming @ file:///home/conda/feedstock_root/build_artifacts/conda-package-streaming_1691009212940/work
-cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography-split_1691444278572/work
-Cython==0.29.36
-distro==1.8.0
-exceptiongroup==1.2.0
-filelock==3.13.1
-flatbuffers==23.5.26
-fsspec==2023.10.0
-fuzzywuzzy==0.18.0
-gast==0.5.4
-google-auth==2.23.4
-google-auth-oauthlib==1.0.0
-google-pasta==0.2.0
-grpcio==1.59.2
-h11==0.14.0
-h5py @ file:///Users/runner/miniforge3/conda-bld/h5py_1637964553571/work
-hdbscan==0.8.33
-httpcore==1.0.2
-httpx==0.25.1
-huggingface-hub==0.19.4
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
-Jinja2==3.1.2
-joblib==1.3.2
-jsonpatch @ file:///home/conda/feedstock_root/build_artifacts/jsonpatch_1632759296524/work
-jsonpointer==2.0
-keras==2.14.0
-libclang==16.0.6
-libmambapy @ file:///Users/runner/miniforge3/conda-bld/mamba-split_1680791351028/work/libmambapy
-mamba @ file:///Users/runner/miniforge3/conda-bld/mamba-split_1680791351028/work/mamba
-Markdown==3.5.1
-MarkupSafe==2.1.3
-ml-dtypes==0.2.0
-mpmath==1.3.0
-networkx==3.2.1
-nltk==3.8.1
-numpy==1.26.1
-oauthlib==3.2.2
-openai==1.3.4
-opt-einsum==3.3.0
-packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1681337016113/work
-pandas==2.1.3
-Pillow==10.1.0
-pluggy @ file:///home/conda/feedstock_root/build_artifacts/pluggy_1693086607691/work
-protobuf==4.25.0
-pyasn1==0.5.0
-pyasn1-modules==0.3.0
-pycosat @ file:///Users/runner/miniforge3/conda-bld/pycosat_1666836623787/work
-pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
-pydantic==2.5.1
-pydantic_core==2.14.3
-pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1685514481738/work
-PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
-python-dateutil==2.8.2
-pytz==2023.3.post1
-PyYAML==6.0.1
-regex==2023.10.3
-requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1684774241324/work
-requests-oauthlib==1.3.1
-rsa==4.9
-ruamel.yaml @ file:///Users/runner/miniforge3/conda-bld/ruamel.yaml_1686993977949/work
-ruamel.yaml.clib @ file:///Users/runner/miniforge3/conda-bld/ruamel.yaml.clib_1670412881259/work
-safetensors==0.4.0
-scikit-learn==1.3.2
-scipy==1.11.4
-sentence-transformers==2.2.2
-sentencepiece==0.1.99
-six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
-sniffio==1.3.0
-sympy==1.12
-tensorboard==2.14.1
-tensorboard-data-server==0.7.2
-tensorflow-estimator==2.14.0
-tensorflow-io-gcs-filesystem==0.34.0
-tensorflow-macos==2.14.0
-termcolor==2.3.0
-threadpoolctl==3.2.0
-tokenizers==0.15.0
-toolz @ file:///home/conda/feedstock_root/build_artifacts/toolz_1657485559105/work
-torch==2.1.1
-torchvision==0.16.1
-tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1691671248568/work
-transformers==4.35.2
-typing_extensions==4.8.0
-tzdata==2023.3
-urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1689789803562/work
-Werkzeug==3.0.1
-wrapt==1.14.1
-zstandard @ file:///Users/runner/miniforge3/conda-bld/zstandard_1667296287896/work
+# --- Core -------------------------------------------------
+absl-py>=2.0.0,<3
+annotated-types>=0.6.0,<1
+anyio>=3.7,<4
+astunparse>=1.6.3,<2
+boltons>=23.0
+Brotli>=1.0.9
+cached-property>=1.5.2
+cachetools>=5.3,<6
+certifi>=2023.7.22
+cffi>=1.15
+charset-normalizer>=3.3
+click>=8.1,<9
+colorama>=0.4
+cryptography>=41.0
+Cython>=0.29
+distro>=1.8
+exceptiongroup>=1.2
+filelock>=3.13
+flatbuffers>=23.5
+fsspec>=2023.10
+fuzzywuzzy>=0.18
+gast>=0.5
+google-auth>=2.23
+google-auth-oauthlib>=1.0
+google-pasta>=0.2
+grpcio>=1.59
+h11>=0.14
+h5py>=3.10
+hdbscan>=0.8
+httpcore>=1.0
+httpx>=0.25
+huggingface-hub>=0.19
+idna>=3.4
+Jinja2>=3.1
+joblib>=1.3
+jsonpatch>=1.33
+jsonpointer>=2.0
+keras>=2.14,<3
+libclang>=16.0
+Markdown>=3.5
+MarkupSafe>=2.1
+ml-dtypes>=0.2
+mpmath>=1.3
+networkx>=3.2
+nltk>=3.8
+numpy>=1.26
+oauthlib>=3.2
+openai>=1.3
+opt-einsum>=3.3
+packaging>=23.2
+pandas>=2.1
+Pillow>=10.1
+pluggy>=1.3
+protobuf>=4.25
+pyasn1>=0.5
+pyasn1-modules>=0.3
+pycparser>=2.21
+pydantic>=2.5
+pydantic-core>=2.14
+pyOpenSSL>=23.2
+PySocks>=1.7
+python-dateutil>=2.8
+pytz>=2023.3
+PyYAML>=6.0
+regex>=2023.10
+requests>=2.31
+requests-oauthlib>=1.3
+rsa>=4.9
+ruamel.yaml>=0.17
+ruamel.yaml.clib>=0.2
+safetensors>=0.4
+scikit-learn>=1.3
+scipy>=1.11
+sentence-transformers>=2.2
+sentencepiece>=0.1.99
+six>=1.16
+sniffio>=1.3
+sympy>=1.12
+tensorboard>=2.14
+tensorboard-data-server>=0.7
+# Apple-silicon Macs get the special wheel; everyone else gets vanilla TF
+tensorflow-macos==2.14.0; sys_platform=="darwin" and platform_machine=="arm64"
+tensorflow==2.14.0; not (sys_platform=="darwin" and platform_machine=="arm64")
+tensorflow-estimator>=2.14
+tensorflow-io-gcs-filesystem>=0.34
+termcolor>=2.3
+threadpoolctl>=3.2
+tokenizers>=0.15
+toolz>=0.12
+torch>=2.1
+torchvision>=0.16
+tqdm>=4.66
+transformers>=4.35
+typing_extensions>=4.8
+tzdata>=2023.3
+urllib3>=2.0
+Werkzeug>=3.0
+wrapt>=1.15
+zstandard>=0.22
