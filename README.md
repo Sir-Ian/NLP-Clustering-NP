@@ -12,6 +12,8 @@ This project contains utilities for structuring and clustering customer chat log
 
 Example usage is provided in `scripts/run_pipeline.py` which performs preprocessing, embedding generation and clustering for a CSV file.
 
+For very large datasets you may prefer to pre-compute the cosine similarity matrix once and reuse it for clustering. The function `precompute_csv_cosine` in `nlp_clustering.clustering` does this and stores the matrix to a `.npy` file. `cluster_csv` can then load the matrix using the `cosine_path` argument.
+
 ## Setup
 
 1. Install dependencies:
@@ -27,4 +29,11 @@ python scripts/run_pipeline.py input.csv output.csv
 ```
 
 This will create intermediate files with preprocessed text and embeddings in the working directory and output a CSV containing cluster labels.
+
+To pre-compute a cosine similarity matrix and cluster using it:
+
+```bash
+python scripts/precompute_cosine.py embedded.csv cosine.npy
+python scripts/run_pipeline.py input.csv output.csv --cosine cosine.npy
+```
 
