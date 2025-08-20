@@ -2,7 +2,10 @@
 
 This project contains utilities for structuring and clustering customer chat logs using OpenAI embeddings and HDBSCAN. The original scripts were consolidated into a small library so the workflow is easier to follow.
 
-## Modules
+Created before I knew how to use GIT, this is my attempt to re-structure. I no longer have access to the data this was built around making it difficult to further test, refine, and improve. 
+
+
+## Modules (WIP)
 
 - **`nlp_clustering.preprocessing`** – text cleaning and lemmatization utilities
 - **`nlp_clustering.embeddings`** – functions to generate embeddings via OpenAI
